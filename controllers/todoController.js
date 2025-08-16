@@ -4,7 +4,7 @@ const Todo = require('../models/todoModel')
 // @desc Get all todos
 const getTodos = async (req, res) => {
     const todo = await Todo.find();
-    res.json(todos);
+    res.json(todo);
 }
 
 //@desc Create a todo
