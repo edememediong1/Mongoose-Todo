@@ -26,10 +26,22 @@ const deleteTodo = async (req, res) => {
     res.json({message: 'Todo removed'})
 }
 
+// @desc Toggle completed state of a todo
+const toggleTodoCompleted = async (req, res) => {
+    const todo = await Todo.findById(req.params.id);
+    if (!todo) {
+        return res.status(404).json({ message: 'Todo not found' });
+    }
+    todo.completed = !todo.completed;
+    await todo.save();
+    res.json(todo);
+};
+
 
 module.exports = {
     getTodos,
     createTodo,
     updateTodo,
-    deleteTodo
+    deleteTodo,
+    toggleTodoCompleted
 }
